@@ -18,8 +18,13 @@
             <a href="#" class="logo-link">
                 <img src="{{ asset('imagens/logo.png') }}" alt="Limpeza Pro" class="logo-img">
             </a>
+
+             <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
              @auth
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li>  <span class="user-greeting">Olá, <strong>{{ Auth::user()->name }}</strong> 👋</span> </li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" class="form-logout">
@@ -30,8 +35,9 @@
                     </form>
                 </li>
                 <li><a href="/" class="logout">← Voltar ao Início</a></li>
+             @endauth
             </ul>
-            @endauth
+           
         </div>
     </header>
 
@@ -70,7 +76,8 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/locales/pt.global.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
+    <script src="{{ asset('js/script1.js') }}"></script>
+    <script type="module" src="./src/main.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -129,6 +136,25 @@
             const modal = document.getElementById('actionModal');
             document.getElementById('closeActionModal').onclick = () => modal.style.display = 'none';
             window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
+        });
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('open');
+                });
+                
+                // Fecha o menu ao clicar em qualquer link lá dentro
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
         });
     </script>
 </body>
