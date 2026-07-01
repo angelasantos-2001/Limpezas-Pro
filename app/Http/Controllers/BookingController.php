@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking; 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {
@@ -108,7 +109,10 @@ class BookingController extends Controller
         ]);
 
         // 1) Grava na BD com o ID do utilizador logado
-        $booking = Booking::create($validated + ['user_id' => auth()->id()]);
+       $booking = Booking::create($validated + [
+        'user_id' => auth()->id(),
+        'confirmation_token' => Str::random(40)
+        ]);
 
         // 2) Integração direta com Google Calendar via Spatie
         try {
@@ -156,7 +160,7 @@ class BookingController extends Controller
         }
 
         return redirect('/agendamento')->with('success', 'Reserva efetuada com sucesso!');
-    }
+        }
 
     /**
      * Lógica do painel visual do administrador (Vista: admin.calendario)

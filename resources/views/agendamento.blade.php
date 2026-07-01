@@ -18,6 +18,11 @@
             <a href="/" class="logo-link">
                 <img src="{{ asset('imagens/logo.png') }}" alt="Limpeza Pro" class="logo-img">
             </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
              @auth
             <ul class="nav-links">
                 <li>  <span class="user-greeting">Olá, <strong>{{ Auth::user()->name }}</strong> 👋</span> </li>
@@ -253,5 +258,25 @@
     </script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script type="module" src="/js/script.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('open');
+                });
+                
+                // Fecha o menu ao clicar em qualquer link lá dentro
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

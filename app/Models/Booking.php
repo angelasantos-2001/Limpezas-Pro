@@ -20,6 +20,8 @@ class Booking extends Model
         'notes',
         'address',
         'user_id',
+        'google_event_id',
+        'confirmation_token',
     ];
 
     // Define a relação com o utilizador

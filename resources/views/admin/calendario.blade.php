@@ -77,6 +77,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/locales/pt.global.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="{{ asset('js/script1.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script type="module" src="./src/main.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -137,8 +138,9 @@
             document.getElementById('closeActionModal').onclick = () => modal.style.display = 'none';
             window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
         });
-
-          document.addEventListener('DOMContentLoaded', function() {
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
             const navLinks = document.getElementById('nav-links');
 

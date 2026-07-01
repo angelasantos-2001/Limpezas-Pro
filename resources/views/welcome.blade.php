@@ -333,6 +333,7 @@
         </div>
     </footer>
 
+    <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/script1.js') }}"></script>
     <script type="module" src="./src/main.js" defer></script>
     <!-- CÓDIGO DO MENU SEM DEPENDER DO VITE -->
