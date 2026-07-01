@@ -95,3 +95,5 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('bookings', BookingController::class); 
     // This automatically creates 'admin.bookings.edit'
 });
+
+Route::get('/confirmar-reserva/{token}', [BookingController::class, 'confirm'])->name('booking.confirm');

@@ -42,6 +42,15 @@
                 <li><strong>Morada:</strong> {{ $booking->address ?? 'Morada não fornecida' }}</li>
             </ul>
 
+            <!-- Dentro do seu email-body, adicione este bloco -->
+    <div style="text-align: center; margin-top: 25px;">
+    <p>Para finalizar a sua marcação, por favor clique no botão abaixo:</p>
+    <a href="{{ route('booking.confirm', ['token' => $booking->confirmation_token]) }}" class="btn">Confirmar Reserva</a>
+    <p style="font-size: 12px; color: #888; margin-top: 15px;">
+        Se não confirmar até [X horas/dias], a reserva será cancelada automaticamente.
+    </p>
+    </div>
+
             <p>Se precisares de alterar a tua marcação ou tiveres alguma dúvida, contacta-nos através do número <strong>91* *** ***</strong> ou responde diretamente a este e-mail.</p>
             
             <p>Obrigado por escolheres a <strong>Limpeza Pro</strong>!</p>

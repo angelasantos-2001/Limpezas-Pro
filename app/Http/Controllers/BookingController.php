@@ -226,5 +226,19 @@ public function edit($id)
 
     return view('admin.bookings.edit', compact('booking'));
 }
+
+public function confirm($token)
+{
+    $booking = Booking::where('confirmation_token', $token)->firstOrFail();
+
+    if ($booking->status === 'confirmado') {
+        return "Esta marcação já foi validada anteriormente.";
+    }
+
+    $booking->status = 'confirmado';
+    $booking->save();
+
+    return "Sucesso! A sua marcação foi validada com sucesso. Obrigado!";
+}
     
 }
