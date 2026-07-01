@@ -4,6 +4,7 @@ FROM php:8.2-cli
 # Instala dependências do sistema
 RUN apt-get update -y && apt-get install -y libpq-dev unzip
 
+
 # Instala extensões PHP necessárias para Laravel e PostgreSQL
 RUN docker-php-ext-install pdo pdo_pgsql
 
